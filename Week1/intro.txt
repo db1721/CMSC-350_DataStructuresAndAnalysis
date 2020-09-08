@@ -1,0 +1,7 @@
+Hello everyone,
+
+
+
+
+
+My name is Dan Beck and I live in Parkville, MD. I commission and program Audio/Video systems in places such as Towson University, University of Maryland, and various government facilities. I'm majoring in Software Development and Security but unsure what direction I will take it. Once I complete my degree, I hope to be able to either advance within the AV field or change careers into anther type of programming that interests me. From this course, I hope to gain a deeper understanding of structures and algorithms as I've noticed in software engineering careers, technical interviews often test our knowledge of that. I have watched some tutorials that scratch the surface of that type of testing, but I still find a lot of it confusing.

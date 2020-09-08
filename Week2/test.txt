@@ -1,0 +1,212 @@
+package postpre;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+  
+//class to convert postfix exp to prefix
+class PostFixToPreFix {
+//we store operatores in cases to check and access...
+boolean isOperator(char x){
+switch (x){
+case '-':
+case '+':
+case '/':
+case '*':
+case '^':
+return true;
+}
+return false;
+}
+
+//method to convert user expression to prefix...
+public String convert(String expression){
+
+Stack<String> stack = new Stack<>();
+for (int i = 0; i <expression.length() ; i++) {
+
+char c = expression.charAt(i);
+
+if(isOperator(c)){
+String s1 = stack.pop();
+String s2 = stack.pop();
+String temp = c + s2 + s1;
+stack.push(temp);
+}else{
+stack.push(c+"");
+}
+}
+String result = stack.pop();
+return result;
+}
+}
+
+
+  
+  
+class PretoPost
+{
+  
+// funtion to check if character
+// is operator or not
+boolean isOperator(char x)
+{
+switch (x)
+{
+case '+':
+case '-':
+case '/':
+case '*':
+return true;
+}
+return false;
+}
+public
+// Convert prefix to Postfix expression
+String preToPost(String pre_exp)
+{
+  
+Stack<String> s= new Stack<String>();
+  
+// length of expression
+int length = pre_exp.length();
+  
+// reading from right to left
+for (int i = length - 1; i >= 0; i--)
+{
+  
+// check if symbol is operator
+if (isOperator(pre_exp.charAt(i)))
+{
+  
+// pop two operands from stack
+String op1 = s.peek(); s.pop();
+String op2 = s.peek(); s.pop();
+  
+// concat the operands and operator
+String temp = op1 + op2 + pre_exp.charAt(i);
+  
+// Push String temp back to stack
+s.push(temp);
+}
+  
+// if symbol is an operand
+else
+{
+// push the operand to the stack
+s.push( pre_exp.charAt(i)+"");
+}
+}
+  
+// stack contains only the Postfix expression
+return s.peek();
+}
+};
+
+//main class which extends gui form to show convertor display
+public class postPre extends JFrame
+{
+  
+//create text field to get marks from user
+JTextField txt1;
+JTextField txt2;
+//button to submit marks
+JButton button1;
+JButton button2;
+
+//label to say user enter marks...
+JLabel jl1;
+JLabel jl2;
+
+postPre()
+{
+//title of form
+this.setTitle("Expression Converter");
+this.setLayout(null);
+
+//label to say enter exp...
+jl1 = new JLabel("Enter Expression");
+jl1.setBounds(100, 50, 100, 50);
+add(jl1);
+
+//result label
+jl2 = new JLabel("Result");
+jl2.setBounds(150, 200, 80, 50);
+add(jl2);
+
+//text field to get expression...
+txt1 = new JTextField("");
+txt1.setBounds(210, 60, 210, 30);
+add(txt1);
+
+//text field to show converting expression...
+txt2 = new JTextField("");
+txt2.setEditable(false);
+txt2.setBounds(200, 210, 210, 30);
+add(txt2);
+
+//button to do conversion...when clicked
+button1 = new JButton("Prefix to Postfix");
+button1.setBounds(100, 130, 150, 30);
+
+//when user press submit button...
+button1.addActionListener(
+
+new ActionListener(){
+@Override
+public void actionPerformed(ActionEvent ae) {
+String pre_exp = txt1.getText();
+PretoPost ptp = new PretoPost();
+txt2.setText(ptp.preToPost(pre_exp));
+}
+
+}
+
+
+);
+add(button1);
+
+
+button2 = new JButton("Postfix to Prefix");
+button2.setBounds(270, 130, 150, 30);
+
+//when user press submit button...
+button2.addActionListener(
+
+new ActionListener(){
+@Override
+public void actionPerformed(ActionEvent ae) {
+String exp = txt1.getText();
+PostFixToPreFix ptp = new PostFixToPreFix();
+txt2.setText(ptp.convert(exp));
+}
+
+}
+
+
+);
+add(button2);
+
+this.setVisible(true);
+this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+this.setBounds(300, 200, 500, 300);
+
+
+
+}
+  
+  
+//main method
+public static void main(String[] args)
+{
+  
+postPre convertor = new postPre();
+  
+}
+  
+}
+
+//PR
