@@ -156,7 +156,7 @@ public class GUI extends JFrame
 			case "Nodes":
 				output.setText(String.valueOf(categories.nodes()));
 				break;
-			case "Inorder":
+			case "In Order":
 				output.setText(categories.inOrder());
 				break;
 			}//end switch ((event.getActionCommand()))
